@@ -1,6 +1,5 @@
 package leetcode.editor.cn;
-
-public class TreeNode {
+class TreeNode {
 
     int val;
     TreeNode left;

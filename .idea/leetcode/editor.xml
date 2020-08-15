@@ -11,18 +11,26 @@
             </LeetcodeEditor>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/../../LeetCode/src/leetcode/editor/cn/P剑指_offer_34ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof.java">
+        <entry key="$PROJECT_DIR$/src/leetcode/editor/cn/P剑指_offer_38ZiFuChuanDePaiLieLcof.java">
           <value>
             <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/../../LeetCode/src/leetcode/editor/cn/P剑指_offer_34ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof.java" />
+              <option name="path" value="$PROJECT_DIR$/src/leetcode/editor/cn/P剑指_offer_38ZiFuChuanDePaiLieLcof.java" />
+              <option name="questionId" value="100308" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/LeetCode/src/leetcode/editor/cn/P剑指_offer_34ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$USER_HOME$/LeetCode/src/leetcode/editor/cn/P剑指_offer_34ErChaShuZhongHeWeiMouYiZhiDeLuJingLcof.java" />
               <option name="questionId" value="100317" />
             </LeetcodeEditor>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/../../LeetCode/src/leetcode/editor/cn/P剑指_offer_37XuLieHuaErChaShuLcof.java">
+        <entry key="$USER_HOME$/LeetCode/src/leetcode/editor/cn/P剑指_offer_37XuLieHuaErChaShuLcof.java">
           <value>
             <LeetcodeEditor>
-              <option name="path" value="$PROJECT_DIR$/../../LeetCode/src/leetcode/editor/cn/P剑指_offer_37XuLieHuaErChaShuLcof.java" />
+              <option name="path" value="$USER_HOME$/LeetCode/src/leetcode/editor/cn/P剑指_offer_37XuLieHuaErChaShuLcof.java" />
               <option name="questionId" value="100307" />
             </LeetcodeEditor>
           </value>
