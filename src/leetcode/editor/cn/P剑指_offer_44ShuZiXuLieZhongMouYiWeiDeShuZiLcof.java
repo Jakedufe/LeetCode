@@ -45,29 +45,22 @@ public class P剑指_offer_44ShuZiXuLieZhongMouYiWeiDeShuZiLcof {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int findNthDigit(int n) {
-            if (n < 10) return n;
-            int index = 1;
-            n--;
             int digit = 1;
-            while (n > index * digit * 9) {
-                n = n - index * 9 * digit;
-                index++;
-                digit *= 10;
+            int start = 1;
+            int count = 9;
+            while (count > 0 && n > count) {
+                n = n - count;
+                digit++;
+                start *= 10;
+                count = start * digit * 9;
             }
-            int sub = n % (index);
-            int m = n / (index);
-            int a1 = m % (digit);
-            int a2 = m / digit;
-            StringBuilder sb = new StringBuilder();
-            a1 += (a2 + 1) * digit;
-            int a3 = a1 % 10;
-            sb.append(a3);
-            a1 /= 10;
-            sb.append(a1);
-            String s = sb.toString();
-            return s.charAt(sub) - '0';
+            int num = start + (n - 1) / digit;
+            int index = (n - 1) % digit;
+            String s = String.valueOf(num);
+            return s.charAt(index) - '0';
         }
     }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
