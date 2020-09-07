@@ -1,0 +1,18 @@
+P$!velocityTool.snakeCaseName($!{question.frontendQuestionId})$!velocityTool.camelCaseName(${question.titleSlug})
+
+
+${question.content}
+
+package leetcode.editor.cn;
+import org.junit.Test;
+import java.util.*;
+//Java：${question.title}
+public class P$!velocityTool.snakeCaseName($!{question.frontendQuestionId})$!velocityTool.camelCaseName(${question.titleSlug}){
+
+    @Test
+    public void testResult() {
+        //TO TEST
+        Solution solution = new P$!velocityTool.snakeCaseName($!{question.frontendQuestionId})$!velocityTool.camelCaseName(${question.titleSlug})().new Solution();
+    }
+    ${question.code}
+}
