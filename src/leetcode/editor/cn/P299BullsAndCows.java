@@ -38,20 +38,45 @@
 
 
 package leetcode.editor.cn;
+
 import org.junit.Test;
+
 //Java：猜数字游戏
-public class P299BullsAndCows{
-    
+public class P299BullsAndCows {
+
     @Test
     public void testResult() {
-        Solution solution = new P299BullsAndCows().new Solution();        // TO TEST
+        Solution solution = new P299BullsAndCows().new Solution();
+        System.out.println(solution.getHint("1123", "0111"));
+        // TO TEST
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public String getHint(String secret, String guess) {
-        return "";
+    class Solution {
+        public String getHint(String secret, String guess) {
+            int x = 0;
+            int y = 0;
+            int[] hash = new int[10];
+            for (int i = 0; i < secret.length(); i++) {
+                if (secret.charAt(i) == guess.charAt(i)) {
+                    x++;
+                    continue;
+                }
+                hash[secret.charAt(i) - '0']++;
+            }
+            for (int i = 0; i < guess.length(); i++) {
+                int c = guess.charAt(i) - '0';
+                if (secret.charAt(i) == guess.charAt(i)) {
+                    continue;
+                }
+                if (hash[c] > 0) {
+                    hash[c]--;
+                    y++;
+                }
+            }
+            return "" + x + 'A' + y + 'B';
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
