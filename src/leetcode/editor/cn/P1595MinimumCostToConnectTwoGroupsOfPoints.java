@@ -52,70 +52,70 @@
 // 0 <= cost[i][j] <= 100 
 // 
 // Related Topics 图 动态规划 
-// 👍 6 👎 0
+// 👍 15 👎 0
 
 
 package leetcode.editor.cn;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 //Java：连通两组点的最小成本
-//2020-09-20 16:18:40
-public class P5522MinimumCostToConnectTwoGroupsOfPoints {
-
+//2020-09-21 10:53:58
+public class P1595MinimumCostToConnectTwoGroupsOfPoints{
+    
     @Test
     public void testResult() {
         //TO TEST
-        Solution solution = new P5522MinimumCostToConnectTwoGroupsOfPoints().new Solution();
-        List<List<Integer>> lists = new ArrayList<>();
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
-        list1.add(15);
-        list1.add(96);
-        list2.add(36);
-        list2.add(2);
-        lists.add(list1);
-        lists.add(list2);
-        System.out.println(solution.connectTwoGroups(lists));
-
+        Solution solution = new P1595MinimumCostToConnectTwoGroupsOfPoints().new Solution();        
     }
-
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
+class Solution {
         public int connectTwoGroups(List<List<Integer>> cost) {
-            int m = cost.size(), n = cost.get(0).size();
+            int n = cost.get(0).size();
+            int m = cost.size();
             int[][] costMatrix = new int[m][1 << n];
-            for (int k = 0; k < m; k++) {
-                for (int i = 0; i < (1 << n); i++) {
-                    int sum = 0;
-                    for (int j = 0; j < n; j++) {
-                        if ((i & (1 << j)) > 0)
-                            sum += cost.get(k).get(j);
-                    }
-                    costMatrix[k][i] = sum;
-                }
-            }
+            int[][] dp = new int[m][1 << n];
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < 1 << n; j++) {
-                    System.out.print(costMatrix[i][j]+"  ");
+                    //选择情况为j时，第i行的花费
+                    int sum = 0;
+                    for (int k = 0; k < n; k++) {
+                        if ((j & (1 << k)) > 0) {
+                            sum += cost.get(i).get(k);
+                        }
+                    }
+                    costMatrix[i][j] = sum;
                 }
-                System.out.println();
             }
-            int[][] dp = new int[m][1 << n];
-            for (int i = 1; i < m; i++)
+            for (int i = 1; i < m; i++) {
                 Arrays.fill(dp[i], Integer.MAX_VALUE);
+            }
             dp[0] = costMatrix[0];
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < (1 << n); j++)
-                    for (int k = 1; k < (1 << n); k++)
-                        dp[i][j | k] = Math.min(dp[i][j | k], dp[i - 1][k] + costMatrix[i][j]);
+            //状态
+//            for (int i = 1; i < m; i++) {
+//                for (int j = 1; j < 1 << n; j++) {
+//                    策略
+//                    for (int k = 1; k < 1 << n; k++) {
+//                        dp[i][j | k] = Math.min(dp[i][j | k], dp[i - 1][j] + costMatrix[i][k]);
+//                    }
+//                }
+//            }
+            for (int i = 1; i < m; i++) {
+                for (int j = 1; j < (1 << n); j++) {
+                    for (int k = 0; k < n; k++) {
+                        dp[i][j | (1 << k)] = Math.min(dp[i][j | (1 << k)], dp[i - 1][j] + costMatrix[i][1 << k]);
+                    }
+                    int rest = (1 << n) - 1 - j;
+                    for (int k = rest; k > 0; k = rest & (k - 1)) {
+                        dp[i][j | k] = Math.min(dp[i][j | k], dp[i - 1][j] + costMatrix[i][k]);
+                    }
+                }
+            }
             return dp[m - 1][(1 << n) - 1];
         }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
