@@ -22,37 +22,68 @@
 //4 3 3 2 2 2 1   1
 
 package leetcode.editor.cn;
+
 import org.junit.Test;
 
 import java.util.Arrays;
 
 //Java：最长上升子序列
-public class P300LongestIncreasingSubsequence{
-    
+public class P300LongestIncreasingSubsequence {
+
     @Test
     public void testResult() {
         Solution solution = new P300LongestIncreasingSubsequence().new Solution();        // TO TEST
-        int[] arr = {10,9,2,5,3,7,101,18};
+        int[] arr = {10, 9, 2, 5, 3, 7, 101, 18};
         System.out.println(solution.lengthOfLIS(arr));
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int lengthOfLIS(int[] nums) {
-       if (nums.length == 0) return 0;
-       int[] dp =new int[nums.length];
-        Arrays.fill(dp,1);
-        int max = 1;
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (nums[j] < nums[i]){
-                    dp[i] = Math.max(dp[i],dp[j]+1);
+    class Solution {
+
+        /**
+         * 贪心+二分
+         *
+         * @param nums
+         * @return
+         */
+        public int lengthOfLIS(int[] nums) {
+            if (nums.length == 0) return 0;
+            int[] arr = new int[nums.length];
+            int index = 0;
+            arr[index] = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                if (nums[i] > arr[index]) {
+                    arr[++index] = nums[i];
+                } else {
+                    int pos = Arrays.binarySearch(arr, 0, index+1, nums[i]);
+                    if (pos < 0) arr[-pos - 1] = nums[i];
                 }
             }
-            if (dp[i] > max) max = dp[i];
+            return index+1;
         }
-        return max;
+
+//        /**
+//         * 动态规划
+//         *
+//         * @param nums
+//         * @return
+//         */
+//        public int lengthOfLIS(int[] nums) {
+//            if (nums.length == 0) return 0;
+//            int[] dp = new int[nums.length];
+//            Arrays.fill(dp, 1);
+//            int max = 1;
+//            for (int i = 0; i < nums.length; i++) {
+//                for (int j = 0; j < i; j++) {
+//                    if (nums[j] < nums[i]) {
+//                        dp[i] = Math.max(dp[i], dp[j] + 1);
+//                    }
+//                }
+//                if (dp[i] > max) max = dp[i];
+//            }
+//            return max;
+//        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
