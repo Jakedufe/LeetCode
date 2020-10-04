@@ -1,4 +1,4 @@
-package leetcode.editor.cn;
+package leetcode.editor.cn.mainThread;
 
 public class ListNode {
 
@@ -8,10 +8,5 @@ public class ListNode {
     ListNode(int x) {
         val = x;
         next = null;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }
