@@ -31,20 +31,12 @@ public class P53MaximumSubarray {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int maxSubArray(int[] nums) {
-            if (nums.length == 0) return 0;
-            int max = Integer.MIN_VALUE;
-            int count = 0;
-            int res = 0;
-            for (int i = 0; i < nums.length; i++) {
-                max = Math.max(max, nums[i]);
-                if (count + nums[i] >= 0) {
-                    count += nums[i];
-                } else {
-                    count = 0;
-                }
-                res = Math.max(res, count);
+            int pre = 0, maxAns = nums[0];
+            for (int x : nums) {
+                pre = Math.max(pre + x, x);
+                maxAns = Math.max(maxAns, pre);
             }
-            return max < 0 ? max : res;
+            return maxAns;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
